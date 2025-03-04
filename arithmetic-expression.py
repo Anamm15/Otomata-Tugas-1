@@ -11,19 +11,17 @@ def is_arithmetic_expression(expression):
             return False
         if expression[i] in operator and expression[i] != '-' and expression[i-1]=='(':
             return False
-        if expression[i] in digits and expression[i-1] in digits:
-            return False
         if expression[i] == '(':
             jumlahBukaKurung+=1
         if expression[i] == ')':
             if jumlahBukaKurung == 0 or expression[i-1] in operator or expression[i-1]=='(':
                 return False
             jumlahBukaKurung-=1    
-    if jumlahBukaKurung:
+    if jumlahBukaKurung or expression[len(expression)-1] in operator:
         return False
     return True
         
-if __name__ == "_main_":
+if __name__ == "__main__":
     expression = input('Masukkan kalimat aritmatika: ')
     if is_arithmetic_expression(expression):
         print('Kalimat aritmatika')
